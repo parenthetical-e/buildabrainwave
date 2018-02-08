@@ -39,7 +39,8 @@ def xjw(ys,
     I_syn_e = (s_ee * J_ee) - (s_ie * J_ie) + I_e
     I_syn_i = (s_ei * J_ei) - (s_ii * J_ii) + I_i
 
-    # Update rates
+    # Update rates, passing synaptic currents (I_syn_*) through
+    # the output nonlinearity, phi.
     re = (-re + phi(I_syn_e, I_e, c, g)) / tau_n
     ri = (-ri + phi(I_syn_i, I_i, c, g)) / tau_n
 

@@ -57,6 +57,8 @@ def xjw(ys,
 
 
 def run(t,
+        re_0=8.0,
+        ri_0=12.0,
         J_ee=2.1,
         J_ie=1.9,
         J_ei=1.5,
@@ -68,7 +70,7 @@ def run(t,
         I_i=85,
         sigma=1,
         dt=1e-4):
-    rs_0 = asarray([8, 12.0, 0, 0, 0, 0])
+    rs_0 = asarray([re_0, ri_0, 0, 0, 0, 0])
 
     # !
     times = create_times((0, t), dt)

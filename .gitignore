@@ -1,0 +1,3 @@
+*.pyc
+buildabrainwave.egg-info/*
+*.cfg

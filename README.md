@@ -12,9 +12,10 @@ git clone ``
 ## Dependencies
 
 - numpy
-- ....
+- scipy
+- bokeh
 
-That is, we assume [Anaconda](https://store.continuum.io/cshop/anaconda/) is installed. 
+That is, just install [Anaconda](https://store.continuum.io/cshop/anaconda/).
 
 ## Usage
 

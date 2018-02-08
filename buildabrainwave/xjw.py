@@ -10,7 +10,13 @@ from numpy import abs as npabs
 from numpy import mean as npmean
 from numpy.random import normal
 
-from buildabrainwave.util import phi, ornstein_uhlenbeck, create_times
+from buildabrainwave.util import ornstein_uhlenbeck, create_times
+
+
+def phi(x):
+    """Output non-linearity."""
+
+    return max(0, x)
 
 
 def xjw(ys,
@@ -19,36 +25,26 @@ def xjw(ys,
         J_ie=1.9,
         J_ei=1.5,
         J_ii=1.1,
-        tau_e=40e-3,
-        tau_i=20e-3,
-        tau_n=20e-4,
+        tau_e=10e-3,
+        tau_i=40e-3,
         I_e=120,
         I_i=150):
     """A version of XJW's classic two-population rate model.
     
     Citation
-    -------
-    TODO
+    --------
+    Dayan P & Abbott LF, Theoretical Neuroscience, MIT Press, 2005, p266.
     """
     re, ri, s_ee, s_ie, s_ei, s_ii = ys
 
-    # Output nonlinear params
-    c = 1.1  # lit?
-    g = 1 / 10  # lit?
-
     # Internal synaptic dynamics
-    s_ee = (-s_ee / tau_e) + re
-    s_ie = (-s_ie / tau_i) + ri
-    s_ei = (-s_ei / tau_e) + re
-    s_ii = (-s_ii / tau_i) + ri
-
-    I_syn_e = (s_ee * J_ee) - (s_ie * J_ie) + I_e
-    I_syn_i = (s_ei * J_ei) - (s_ii * J_ii) + I_i
+    I_syn_e = (re * J_ee) - (ri * J_ie) + I_e
+    I_syn_i = (re * J_ei) - (ri * J_ii) + I_i
 
     # Update rates, passing synaptic currents (I_syn_*) through
     # the output nonlinearity, phi.
-    re = (-re + phi(I_syn_e, I_e, c, g)) / tau_n
-    ri = (-ri + phi(I_syn_i, I_i, c, g)) / tau_n
+    re = (-re + phi(I_syn_e)) / tau_e
+    ri = (-ri + phi(I_syn_i)) / tau_i
 
     # Repackage
     ys = [re, ri, s_ee, s_ie, s_ei, s_ii]
@@ -63,15 +59,14 @@ def run(t,
         J_ie=1.9,
         J_ei=1.5,
         J_ii=1.1,
-        tau_e=40e-3,
-        tau_i=20e-3,
-        tau_n=10e-3,
-        I_e=120,
-        I_i=85,
+        tau_e=10e-3,
+        tau_i=30e-3,
+        I_e=12,
+        I_i=8,
         sigma=1,
         dt=1e-4):
 
-    rs_0 = asarray([re_0, ri_0, 0, 0, 0, 0])
+    rs_0 = asarray([re_0, ri_0, re_0, ri_0, re_0, ri_0])
 
     # !
     times = create_times((0, t), dt)
@@ -86,7 +81,6 @@ def run(t,
         J_ii=J_ii,
         tau_e=tau_e,
         tau_i=tau_i,
-        tau_n=tau_n,
         I_e=I_e,
         I_i=I_i)
 

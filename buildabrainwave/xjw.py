@@ -11,12 +11,7 @@ from numpy import mean as npmean
 from numpy.random import normal
 
 from buildabrainwave.util import ornstein_uhlenbeck, create_times
-
-
-def phi(x):
-    """Output non-linearity."""
-
-    return max(0, x)
+from buildabrainwave.util import threshold_linear as phi
 
 
 def xjw(ys,

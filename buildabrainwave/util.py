@@ -22,31 +22,19 @@ def create_times(tspan, dt):
     return linspace(t0, t1, np.int(np.round((t1 - t0) / dt)))
 
 
-def phi(Isyn, I, c, g):
+def threshold_linear(x):
+    """Output non-linearity."""
+
+    return max(0, x)
+
+
+def sigmoid(Isyn, I, c, g):
+    """Output non-linearity."""
     return ((c * Isyn) - I) / (1 - exp(-g * ((c * Isyn) - I)))
 
 
-def create_stim_I(times, d, scale, seed=None):
-    rates = stim(times, d, scale, seed)
-
-    def I(t):
-        i = (npabs(times - t)).argmin()
-        return rates[i]
-
-    return I
-
-
-def create_constant_I(times, d, seed=None):
-    rates = constant(times, d)
-
-    def I(t):
-        i = (npabs(times - t)).argmin()
-        return rates[i]
-
-    return I
-
-
 def ornstein_uhlenbeck(rs, t, sigma=0.5, loc=None):
+    """A (independent) Brownian noise process."""
     if loc is None:
         loc = range(rs.size)
 

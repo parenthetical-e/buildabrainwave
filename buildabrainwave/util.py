@@ -3,8 +3,6 @@ from numpy import exp, allclose, asarray, linspace, argmax, zeros, diag
 from numpy import abs as npabs
 from numpy import mean as npmean
 from numpy.random import normal
-from fakespikes.rates import stim, constant
-import sys
 
 
 def create_times(tspan, dt):

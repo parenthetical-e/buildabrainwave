@@ -18,4 +18,4 @@ setup(
         'Programming Language :: Python :: 2.7'
     ],
     packages=find_packages(),
-    install_requires=['numpy>=1.8.0', 'scipy>=0.15.1'], )
+    install_requires=['numpy>=1.8.0'], )

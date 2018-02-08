@@ -1,4 +1,4 @@
-fire==0.1.0
 sdeint==0.2.0
 setuptools==38.2.5
 numpy==1.14.0
+bokeh==0.12.7

@@ -1,7 +1,5 @@
 from __future__ import division
 
-import fire
-
 from sdeint import itoint
 from functools import partial
 
@@ -82,8 +80,3 @@ def run(t,
     rs = itoint(f, g, rs_0, times)
 
     return times, rs
-
-
-# demo
-if __name__ == "__main__":
-    fire.Fire(run)

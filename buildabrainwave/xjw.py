@@ -57,6 +57,8 @@ def xjw(ys,
 
 
 def run(t,
+        re_0=8,
+        ri_0=12,
         J_ee=2.1,
         J_ie=1.9,
         J_ei=1.5,
@@ -68,10 +70,17 @@ def run(t,
         I_i=85,
         sigma=1,
         dt=1e-4):
-    rs_0 = asarray([8, 12.0, 0, 0, 0, 0])
+
+    if sigma < 0:
+        raise ValueError("sigma must be >= 0.")
+
+    # Initial values
+    rs_0 = asarray([re_0, ri_0, 0, 0, 0, 0])
 
     # !
     times = create_times((0, t), dt)
+
+    # If sigma > 0: we re-define xjw as a stochastic ODE.
     g = partial(ornstein_uhlenbeck, sigma=sigma, loc=[0, 1])  # re/i locs
     f = partial(
         xjw,

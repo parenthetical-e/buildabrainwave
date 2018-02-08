@@ -57,24 +57,20 @@ def xjw(ys,
 
 
 def run(t,
-        re_0=8,
-        ri_0=12,
+        re_0=8.0,
+        ri_0=12.0,
         J_ee=2.1,
         J_ie=1.9,
         J_ei=1.5,
         J_ii=1.1,
         tau_e=40e-3,
         tau_i=20e-3,
-        tau_n=20e-3,
+        tau_n=10e-3,
         I_e=120,
         I_i=85,
         sigma=1,
         dt=1e-4):
 
-    if sigma < 0:
-        raise ValueError("sigma must be >= 0.")
-
-    # Initial values
     rs_0 = asarray([re_0, ri_0, 0, 0, 0, 0])
 
     # !

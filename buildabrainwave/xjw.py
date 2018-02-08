@@ -24,6 +24,12 @@ def xjw(ys,
         tau_n=20e-4,
         I_e=120,
         I_i=150):
+    """A version of XJW's classic two-population rate model.
+    
+    Citation
+    -------
+    TODO
+    """
     re, ri, s_ee, s_ie, s_ei, s_ii = ys
 
     # Output nonlinear params

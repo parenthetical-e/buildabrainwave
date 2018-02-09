@@ -4,19 +4,19 @@ Code for Erik Peterson's Nerd Nite talk, Feb 2018.
 
 ## Install
 
-git clone ``
+`git clone https://github.com/parenthetical-e/buildabrainwave` into a working directory.
 
-`pip install .`
+On the commandline, move into that directory then into the top-level `buildabrainwave` directory. From their type, `pip install .`
 
 
 ## Dependencies
 
 - numpy
-- scipy
+- sdeint
 - bokeh
 
 That is, just install [Anaconda](https://store.continuum.io/cshop/anaconda/).
 
 ## Usage
 
-....
+See `ipynb/figures.ipynb`.

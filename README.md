@@ -1,6 +1,6 @@
 # buildabrainwave
 
-Code for Erik Peterson's Nerd Nite talk, Feb 2018. Slides can be from this repo by clicking [here](https://github.com/parenthetical-e/buildabrainwave/blob/master/Feb_2018_Nerd_nite.pdf).
+Code for Erik Peterson's Nerd Nite talk, Feb 2018. Slides can be downloaded from this repo by clicking [here](https://github.com/parenthetical-e/buildabrainwave/blob/master/Feb_2018_Nerd_nite.pdf).
 
 
 ## Install
